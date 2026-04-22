@@ -1,0 +1,8 @@
+{
+  "name": "Smart Spare Parts Identifier",
+  "description": "An AI-powered mobile web app for identifying industrial mechanical spare parts with instant description and usage details.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
