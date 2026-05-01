@@ -204,7 +204,7 @@ export default function IdentifierTool() {
         const messages = {
           good: "Optimal lighting and contrast detected. Ready for neural scan.",
           fair: "Slight blur or low contrast detected. Scanning may be less accurate.",
-          poor: "Poor image quality detected. Please recapture with better lighting."
+          poor: "Low image quality detected. Attempting identification with enhanced neural processing."
         };
         
         setQualityFeedback({
@@ -212,9 +212,8 @@ export default function IdentifierTool() {
           message: messages[randomQ]
         });
 
-        if (randomQ !== 'poor') {
-          analyzeImage(base64);
-        }
+        // Always attempt scan regardless of quality rating
+        analyzeImage(base64);
       };
       reader.readAsDataURL(file);
     }
@@ -304,12 +303,15 @@ export default function IdentifierTool() {
 
     } catch (err) {
       console.error("AI Analysis failed", err);
-      setError(`Neural uplink established, but signature verification failed. 
-        Possible causes:
-        • Weak network bandwidth causing frame corruption.
-        • AI service saturation (neural servers under heavy load).
-        • Insufficient telemetry clarity (poor lighting or out of focus).
-        Please recalibrate and retry.`);
+      setError(`Neural signature identification failed. 
+        UNABLE_TO_SCAN: The image could not be definitively mapped to a known industrial component.
+        
+        Primary Diagnostics:
+        • Geometric Deformation: The part may be too damaged or distorted for architectural matching.
+        • Telemetry Interference: High noise or motion blur in the capture feed.
+        • Shadow Occlusion: Critical mounting points or labels are obscured by poor lighting.
+        
+        Recommendation: Recalibrate lighting and re-attempt capture from a different angle.`);
     } finally {
       setIsAnalyzing(false);
     }

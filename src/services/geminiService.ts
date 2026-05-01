@@ -7,8 +7,10 @@ export async function identifyPart(base64Image: string) {
     // Extract base64 content
     const base64Data = base64Image.split(',')[1];
     
-    const prompt = `Identify this industrial or mechanical spare part. 
-    Return ONLY a JSON object with the following structure:
+    const prompt = `Identify this industrial or mechanical spare part from the provided image.
+    If you cannot identify any industrial or mechanical part because the image is too low quality, too deformed, or does not contain a machine part, return ONLY the word "UNIDENTIFIABLE".
+    
+    Otherwise, return ONLY a JSON object with the following structure:
     {
       "name": "The common industrial name of the part",
       "category": "The specific industrial category (e.g., HVAC, Hydraulics, Electrical)",
@@ -45,7 +47,11 @@ export async function identifyPart(base64Image: string) {
       ]
     });
 
-    const text = response.text || "{}";
+    const text = (response.text || "").trim();
+    
+    if (text.includes("UNIDENTIFIABLE")) {
+      throw new Error("UNABLE_TO_SCAN: Signature could not be resolved from telemetry feed.");
+    }
     
     // Clean up potential markdown formatting from JSON
     const cleanJson = text.replace(/```json|```/g, "").trim();
