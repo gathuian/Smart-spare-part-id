@@ -19,6 +19,8 @@ export async function identifyPart(base64Image: string) {
         "dimensions": "Standard industrial dimensions for this type of part",
         "tempRange": "Standard operating temperature range (e.g., -20°C to 120°C)"
       },
+      "maintenanceTips": ["Tip 1 on how to care for/maintain this part", "Tip 2...", "Tip 3..."],
+      "youtubeSearchQuery": "A specific search query for YouTube to find a great explanation or tutorial video (e.g., 'how an industrial centrifugal pump works')",
       "similarParts": [
         { "name": "Part Name", "reason": "Why it is complementary or similar" },
         { "name": "Part Name", "reason": "Why it is complementary or similar" }

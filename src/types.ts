@@ -12,6 +12,8 @@ export interface SparePart {
     dimensions: string;
     tempRange: string;
   };
+  maintenanceTips?: string[];
+  youtubeSearchQuery?: string;
   similarParts: {
     name: string;
     reason: string;
