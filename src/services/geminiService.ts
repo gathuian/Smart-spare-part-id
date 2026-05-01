@@ -11,8 +11,18 @@ export async function identifyPart(base64Image: string) {
     Return ONLY a JSON object with the following structure:
     {
       "name": "The common industrial name of the part",
+      "category": "The specific industrial category (e.g., HVAC, Hydraulics, Electrical)",
       "description": "A concise 2-sentence technical description",
       "possibleUses": ["list", "of", "3", "real-world", "uses"],
+      "technicalSpecs": {
+        "material": "Estimated material (e.g., Stainless Steel 304, Cast Iron)",
+        "dimensions": "Standard industrial dimensions for this type of part",
+        "tempRange": "Standard operating temperature range (e.g., -20°C to 120°C)"
+      },
+      "similarParts": [
+        { "name": "Part Name", "reason": "Why it is complementary or similar" },
+        { "name": "Part Name", "reason": "Why it is complementary or similar" }
+      ],
       "confidence": a number between 75 and 99
     }`;
 
