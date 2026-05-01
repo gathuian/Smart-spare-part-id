@@ -17,6 +17,7 @@ export interface SparePart {
     reason: string;
   }[];
   userFeedback?: 'helpful' | 'not-helpful';
+  feedbackComment?: string;
 }
 
 export const MOCK_PARTS_DATA: Omit<SparePart, 'id' | 'imageUrl' | 'timestamp' | 'confidence' | 'similarParts' | 'technicalSpecs'>[] = [
